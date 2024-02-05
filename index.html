@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite para Namoro</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #cce7e8; /* Cor de fundo atraente */
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #response {
+            font-weight: bold;
+        }
+
+        #gif {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        #simButton, #naoButton {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        #simButton {
+            background-color: #4caf50; /* Cor verde para o botão SIM */
+            color: #fff; /* Texto branco no botão SIM */
+            border: none;
+        }
+
+        #naoButton {
+            background-color: #e74c3c; /* Cor vermelha para o botão NÃO */
+            color: #fff; /* Texto branco no botão NÃO */
+            border: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 id="title">Karolyne, Quer namorar comigo?👨🏼‍❤️‍👩🏼</h1>
+        <button id="simButton" onclick="responder('sim')">Sim</button>
+        <button id="naoButton" onclick="responder('nao')">Não</button>
+        <p id="response"></p>
+        <img id="gif" src="https://media.tenor.com/4IckGuTqWeYAAAAM/spongebob-squarepants-begging.gif" alt="GIF">
+    </div>
+
+    <script>
+        var simButton = document.getElementById('simButton');
+        var naoButton = document.getElementById('naoButton');
+        var respostaElement = document.getElementById('response');
+        var gifElement = document.getElementById('gif');
+        var h11 = document.getElementById('title');
+
+        function responder(resposta) {
+            if (resposta === 'sim') {
+                // Esconde os botões
+                simButton.classList.add('hidden');
+                naoButton.classList.add('hidden');
+                h11.classList.add('hidden');
+
+                // Exibe a mensagem e o GIF
+                respostaElement.innerHTML = 'Yay! Vamos namorar! 😍';
+                respostaElement.style.fontSize = '50px';
+                gifElement.src = 'https://i.pinimg.com/originals/fa/58/b8/fa58b87e9d904c2abd828f940658eafa.gif';
+            } else if (resposta === 'nao') {
+                respostaElement.innerHTML = getMensagemNao();
+                gifElement.src = 'https://i.pinimg.com/originals/b4/a2/d5/b4a2d5a587fd1ba45065c0aa2ab0db05.gif';
+
+                // Aumentar o tamanho do botão SIM
+                simButtonFontSize += 25;
+                simButton.style.fontSize = simButtonFontSize + 'px';
+            }
+        }
+
+        var mensagemNaoIndex = 0;
+        var simButtonFontSize = 16;
+
+        function getMensagemNao() {
+            var mensagensNao = [
+                'Oh não! 😢 Por favor, reconsidere!',
+                'Você não quer me fazer a pessoa mais feliz do mundo? 😔',
+                'Seria incrível namorar com você! 💖',
+                'Pense bem, podemos viver momentos incríveis juntos! 😊',
+                'Você tem certeza?🤨',
+                'Eu esperava que você quisesse... 🙄',
+                'Certeza absoluta?😓',
+                'Apenas pense sobre isso!👍',
+                'Se você disser não, eu ficarei muito triste😞',
+                'Vou ficar muito muito triste😞😞',
+                'Okkk, vou parar de perguntarrrr',
+                'Mas por ultimo🫤',
+                'Você tem certezaaa mesmoooooo?😶‍🌫️'
+            ];
+
+            // Pega a próxima mensagem na ordem e reinicia se atingir o fim
+            var mensagemSelecionada = mensagensNao[mensagemNaoIndex];
+            mensagemNaoIndex = (mensagemNaoIndex + 1) % mensagensNao.length;
+
+            return mensagemSelecionada;
+        }
+    </script>
+</body>
+</html>
+
